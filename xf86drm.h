@@ -43,6 +43,11 @@
 extern "C" {
 #endif
 
+#ifdef _WIN32
+typedef unsigned int gid_t;
+typedef unsigned int mode_t;
+#endif /* _WIN32 */
+
 #ifndef DRM_MAX_MINOR
 #define DRM_MAX_MINOR   16
 #endif
@@ -58,7 +63,9 @@ extern "C" {
 
 #else /* One of the *BSDs */
 
+#ifndef _WIN32
 #include <sys/ioccom.h>
+#endif /* _WIN32 */
 #define DRM_IOCTL_NR(n)         ((n) & 0xff)
 #define DRM_IOC_VOID            IOC_VOID
 #define DRM_IOC_READ            IOC_OUT

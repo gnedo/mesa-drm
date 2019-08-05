@@ -198,6 +198,9 @@ enum nouveau_bus_type {
 };
 
 struct drm_nouveau_sarea {
+#ifdef _WIN32
+    void *BOGUS_;
+#endif /* ndef _WIN32 */
 };
 
 #define DRM_NOUVEAU_GETPARAM           0x00
